@@ -12,3 +12,4 @@ class GetCategory {
     return categorisList;
   }
 }
+
