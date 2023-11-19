@@ -19,11 +19,13 @@ class ProductModel {
     return ProductModel(
       id: jsonData['id'],
       title: jsonData['title'],
-      price: jsonData['price'],
+      price: (jsonData['price'] is int)
+          ? jsonData['price'].toDouble()
+          : jsonData['price'],
       description: jsonData['description'],
       category: jsonData['category'],
       image: jsonData['image'],
-      rating: RatingModel.fromJson(jsonData['rasting']),
+      rating: RatingModel.fromJson(jsonData['rating']),
     );
   }
 }
@@ -33,6 +35,10 @@ class RatingModel {
   final int count;
   RatingModel({required this.rate, required this.count});
   factory RatingModel.fromJson(jsonData) {
-    return RatingModel(rate: jsonData['rate'], count: jsonData['rate']);
+    return RatingModel(
+        rate: (jsonData['rate'] is double)
+            ? jsonData['rate']
+            : jsonData['rate'].toDouble(),
+        count: jsonData['count']);
   }
 }
